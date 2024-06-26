@@ -1,22 +1,24 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
-
-import type { MovieListProps, Movie } from "../../types/app";
+import { View, Text, FlatList } from "react-native";
+import { Movie, MovieListProps } from "../../types/app";
 import { API_ACCESS_TOKEN } from "@env";
+import { useEffect, useState } from "react";
+import { StyleSheet } from "react-native";
 import MovieItem from "./MovieItem";
+import React from "react";
 
-const MovieList = ({ title, path, coverType }: MovieListProps): JSX.Element => {
+const coverImageSize = {
+  backdrop: {
+    width: 280,
+    height: 160,
+  },
+  poster: {
+    width: 100,
+    height: 160,
+  },
+};
+
+function MovieList({ title, path, coverType }: MovieListProps): JSX.Element {
   const [movies, setMovies] = useState<Movie[]>([]);
-  const coverImageSize = {
-    backdrop: {
-      width: 280,
-      height: 160,
-    },
-    poster: {
-      width: 100,
-      height: 160,
-    },
-  };
 
   useEffect(() => {
     getMovieList();
@@ -42,8 +44,6 @@ const MovieList = ({ title, path, coverType }: MovieListProps): JSX.Element => {
       });
   };
 
-  // console.log(movies);
-
   return (
     <View>
       <View style={styles.header}>
@@ -63,14 +63,13 @@ const MovieList = ({ title, path, coverType }: MovieListProps): JSX.Element => {
             movie={item}
             size={coverImageSize[coverType]}
             coverType={coverType}
-            onPress={() => item.id}
           />
         )}
         keyExtractor={(item) => item.id.toString()}
       />
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   header: {

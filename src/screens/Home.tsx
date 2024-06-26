@@ -1,8 +1,14 @@
-import React from 'react'
-import { ScrollView, View, StatusBar, StyleSheet } from 'react-native'
-import type { MovieListProps } from "../types/app";
-import MovieList from '../components/movies/MovieList';
-
+import React from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Button,
+  ScrollView,
+  StatusBar,
+} from "react-native";
+import { MovieListProps } from "../types/app";
+import MovieList from "../components/movies/MovieList";
 
 const movieLists: MovieListProps[] = [
   {
@@ -27,7 +33,7 @@ const movieLists: MovieListProps[] = [
   },
 ];
 
-const Home = (): JSX.Element => {
+export default function Home(): JSX.Element {
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -42,17 +48,14 @@ const Home = (): JSX.Element => {
         <StatusBar translucent={false} />
       </View>
     </ScrollView>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     marginTop: StatusBar.currentHeight ?? 32,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     rowGap: 16,
   },
-  
-})
-
-export default Home
+});
