@@ -3,7 +3,7 @@ import { API_URL, API_ACCESS_TOKEN } from '@env'
 
 import React from "react";
 
-const MovieDetail = ({navigator}: any) => {
+const MovieDetail = ({ route }: any): JSX.Element => {
     const fetchData = (): void => {
       if (API_URL == null || API_ACCESS_TOKEN.length == null) {
         throw new Error('ENV not found')
